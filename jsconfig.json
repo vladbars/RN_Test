@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "react-native",
+    "paths": {
+      "@api": ["./api"],
+      "@config": ["./config"],
+      "@screens": ["./screens"],
+      "@styles": ["./styles"],
+      "@navigation": ["./navigation"],
+      "@localize": ["./localize"],
+
+      "@api/*": ["./api/*"],
+      "@config/*": ["./config/*"],
+      "@screens/*": ["./screens/*"],
+      "@styles/*": ["./styles/*"],
+      "@navigation/*": ["./navigation/*"],
+      "@localize/*": ["./localize/*"]
+    }
+  },
+  "exclude": ["node_modules/", "android/", "ios/", "patches/"]
+}
