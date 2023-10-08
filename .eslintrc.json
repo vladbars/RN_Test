@@ -205,7 +205,7 @@
         ["@screens", "./screens"],
         ["@styles", "./styles"],
         ["@navigation", "./navigation"],
-        ["@localize", "./localize"]
+        ["@utils", "./utils"]
       ]
     }
   }

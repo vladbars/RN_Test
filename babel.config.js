@@ -12,16 +12,10 @@ module.exports = {
           '@models': './src/models',
           '@styles': './src/styles',
           '@navigation': './src/navigation',
-          '@localize': './src/localize',
+          '@utils': './src/utils',
         },
         extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.json', '.ts', '.tsx'],
       },
     ],
   ],
-  overrides: [
-    {
-      test: './node_modules/ethers',
-      plugins: [['@babel/plugin-transform-private-methods', {loose: true}]],
-    },
-  ],
-};
+}

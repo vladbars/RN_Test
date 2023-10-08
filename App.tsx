@@ -7,15 +7,21 @@
 
 import React from 'react'
 import Navigation from '@navigation'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { SafeAreaView, useColorScheme } from 'react-native'
-
+import styled from 'styled-components/native'
+import { Provider } from 'react-redux'
+import store from './src/store'
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Navigation />
-    </SafeAreaView>
+    <Container>
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
+    </Container>
   )
 }
 
 export default App
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+`

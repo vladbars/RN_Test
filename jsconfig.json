@@ -8,14 +8,14 @@
       "@screens": ["./screens"],
       "@styles": ["./styles"],
       "@navigation": ["./navigation"],
-      "@localize": ["./localize"],
+      "@utils": ["./utils"],
 
       "@api/*": ["./api/*"],
       "@config/*": ["./config/*"],
       "@screens/*": ["./screens/*"],
       "@styles/*": ["./styles/*"],
       "@navigation/*": ["./navigation/*"],
-      "@localize/*": ["./localize/*"]
+      "@utils/*": ["./utils/*"]
     }
   },
   "exclude": ["node_modules/", "android/", "ios/", "patches/"]
