@@ -1,14 +1,19 @@
 import { createReducer } from 'redux-act'
 
-import { getProfile } from './actions'
+import { dispatchGetProfile } from './actions'
 import initialState from './state'
+import User from '../types/User'
 
 export default createReducer(
   {
-    [getProfile]: (state) => state.set('isLoading', true),
-    [getProfile.success]: (state, { profile = {} }) =>
-      state.set('profile', profile).set('isLoading', false),
-    [getProfile.error]: (state) => state.set('isLoading', false),
+    [dispatchGetProfile]: (state) => state.set('isLoading', true),
+    [dispatchGetProfile.success]: (state, { profile = {} }) => {
+      const { id } = profile
+      const profiles: { [key: number]: User } = state.get('profiles') || {}
+      profiles[id] = profile
+      return state.set('profiles', profiles).set('isLoading', false)
+    },
+    [dispatchGetProfile.error]: (state) => state.set('isLoading', false),
   },
   initialState
 )

@@ -1,4 +1,4 @@
 import { createApiAction } from '@utils/redux'
-const getProfile = createApiAction('Profile/GET_PROFILE')
+const dispatchGetProfile = createApiAction('Profile/GET_PROFILE')
 
-export { getProfile }
+export { dispatchGetProfile }

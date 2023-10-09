@@ -1,21 +1,25 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
-import { getProfile } from './actions'
+import { call, put, takeEvery, select } from 'redux-saga/effects'
+import { dispatchGetProfile } from './actions'
 import profileApi from '@api/profile'
+import { selectProfiles } from './selectors'
 
-export default [takeLatest(getProfile.toString(), getProfileSaga)]
+export default [takeEvery(dispatchGetProfile.toString(), getProfileSaga)]
 
-function* getProfileSaga({ payload }: { payload: { userId: string } }): Generator<any, void, any> {
-  console.log('🚀 ~ function*getProfileSaga ~ getProfileSaga:', getProfileSaga)
+function* getProfileSaga({ payload }: { payload: { userId: number } }): Generator<any, void, any> {
   try {
     const { userId } = payload
+    const existUsers = yield select(selectProfiles())
+    const existUser = existUsers[userId]
+    if (existUser) return
     const postsResult = yield call(profileApi.getProfile, userId)
     if (postsResult?.data) {
       const profile = postsResult.data
-      yield put(getProfile.success({ profile }))
+      console.log('🚀 ~ function*getProfileSaga ~ profile:', profile)
+      yield put(dispatchGetProfile.success({ profile }))
     } else {
-      yield put(getProfile.error())
+      yield put(dispatchGetProfile.error())
     }
   } catch (e) {
-    yield put(getProfile.error(e))
+    yield put(dispatchGetProfile.error(e))
   }
 }

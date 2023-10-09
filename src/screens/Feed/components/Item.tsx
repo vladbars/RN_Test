@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components/native'
 import Post from '@screens/Feed/types/Post'
-import Avatar from 'components/Avatar/index'
-import PostBody from '@screens/Feed/components/PostBody'
+import RoundAvatar from 'components/Avatar/round'
+import PostBody from './PostBody'
 import UserFullName from 'components/UserFullName'
 import { connect } from 'react-redux'
-import { selectProfile } from '@screens/Profile/redux/selectors'
+import { selectProfile, selectIsLoading } from '@screens/Profile/redux/selectors'
 import User from '@screens/Profile/types/User'
 import { createStructuredSelector } from 'reselect'
 import { dispatchGetProfile } from '@screens/Profile/redux/actions'
-function Profile({
-  route,
+function Item({
+  post,
   getProfile,
   selectProfileFromStore,
 }: {
-  route: any
+  post: Post
   getProfile: Function
   selectProfileFromStore: Function
 }): JSX.Element {
-  const { id: userId } = route.params?.profile ?? {}
+  const { userId, body } = post
   const profile: User = selectProfileFromStore(userId)
 
   useEffect(() => {
@@ -26,17 +26,26 @@ function Profile({
   }, [getProfile, userId])
 
   return (
-    <PostFullContainer>
-      <Avatar userId={userId} />
-      <UserFullName profile={profile} />
-    </PostFullContainer>
+    <ItemContainer>
+      <RoundAvatar userId={userId} />
+      <ItemContent>
+        <UserFullName profile={profile} />
+        <PostBody
+          body={body}
+          isPreview
+        />
+      </ItemContent>
+    </ItemContainer>
   )
 }
 
-const PostFullContainer = styled.View`
-  align-items: center;
+const ItemContainer = styled.View`
+  flex-direction: row;
 `
 
+const ItemContent = styled.View`
+  margin-left: 16px;
+`
 const mapDispatchToProps = {
   getProfile: dispatchGetProfile,
 }
@@ -44,4 +53,4 @@ const mapDispatchToProps = {
 const mapStateToProps = createStructuredSelector({
   selectProfileFromStore: selectProfile(),
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Item)

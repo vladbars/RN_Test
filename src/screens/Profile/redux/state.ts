@@ -1,7 +1,7 @@
 import { Map } from 'immutable'
 
 const initialState = Map({
-  profile: {},
+  profiles: {},
   isLoading: false,
 })
 

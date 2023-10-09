@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import FeedScreen from '@screens/Feed'
-import PostScreen from '@screens/Post'
+import PostScreen from '@screens/Feed/Post'
 import ProfileScreen from '@screens/Profile'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
