@@ -14,7 +14,6 @@ function* getProfileSaga({ payload }: { payload: { userId: number } }): Generato
     const postsResult = yield call(profileApi.getProfile, userId)
     if (postsResult?.data) {
       const profile = postsResult.data
-      console.log('🚀 ~ function*getProfileSaga ~ profile:', profile)
       yield put(dispatchGetProfile.success({ profile }))
     } else {
       yield put(dispatchGetProfile.error())
